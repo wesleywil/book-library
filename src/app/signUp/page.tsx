@@ -5,19 +5,22 @@ import { useRouter } from "next/navigation";
 import React, { ChangeEvent, useState } from "react";
 
 export default function SignUp() {
-  const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
+  const [data, setData] = useState<{
+    username: string;
+    email: string;
+    password: string;
+  }>({} as { username: string; email: string; password: string });
   const router = useRouter();
 
   const handleForm = async (event: React.FormEvent) => {
     event.preventDefault();
 
-    const { result, error } = await signUp(email, password);
+    const { result, error } = await signUp(data);
     if (error) {
       return console.log(error);
     }
     console.log(result);
-    return router.push("/admin");
+    return router.push("/profile");
   };
 
   return (
@@ -26,7 +29,17 @@ export default function SignUp() {
       <form onSubmit={handleForm} className="mt-8 flex flex-col gap-2 text-xl">
         <input
           onChange={(e: ChangeEvent<HTMLInputElement>) =>
-            setEmail(e.target.value)
+            setData((prevdata) => ({ ...prevdata, username: e.target.value }))
+          }
+          type="text"
+          name="username"
+          id="username"
+          placeholder="Username - ex: test_me"
+          className="px-2 py-1 text-black font-semibold rounded"
+        />
+        <input
+          onChange={(e: ChangeEvent<HTMLInputElement>) =>
+            setData((prevdata) => ({ ...prevdata, email: e.target.value }))
           }
           type="email"
           name="email"
@@ -36,7 +49,7 @@ export default function SignUp() {
         />
         <input
           onChange={(e: ChangeEvent<HTMLInputElement>) =>
-            setPassword(e.target.value)
+            setData((prevdata) => ({ ...prevdata, password: e.target.value }))
           }
           type="password"
           name="password"

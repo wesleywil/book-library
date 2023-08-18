@@ -2,7 +2,7 @@
 
 import signIn from "@/firebase/auth/signIn";
 import { useRouter } from "next/navigation";
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, useState, useEffect } from "react";
 
 export default function SignIn() {
   const [email, setEmail] = useState<string>("");
@@ -17,9 +17,18 @@ export default function SignIn() {
       return console.log(error);
     }
     console.log(result);
-    return router.push("/admin");
+    return router.push("/");
   };
 
+  let logged_in = false;
+
+  useEffect(() => {
+    logged_in = JSON.parse(localStorage.getItem("userLogged")!).logIn;
+  }, []);
+
+  if (!logged_in) {
+    router.push("/");
+  }
   return (
     <main className="min-w-screen min-h-screen flex flex-col items-center justify-center p-4">
       <h1 className="text-center text-4xl font-bold">Sign In</h1>
