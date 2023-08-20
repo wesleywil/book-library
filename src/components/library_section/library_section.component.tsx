@@ -1,10 +1,15 @@
+import { useSelector } from "react-redux";
+import { RootState } from "@/redux/store";
 import LibraryBook from "../library_book/library_book.component";
+import { useEffect } from "react";
 
 type LibrarySectionProps = {
   name: string;
 };
 
 const LibrarySection = ({ name }: LibrarySectionProps) => {
+  const books = useSelector((state: RootState) => state.books.books);
+  useEffect(() => {}, [books]);
   return (
     <div className="w-full xl:w-2/3 xl:mx-auto mt-2 p-1  border border-yellow-400 rounded">
       <div className="px-2 mb-2 flex flex-col  md:flex-row-reverse justify-between">
@@ -22,9 +27,15 @@ const LibrarySection = ({ name }: LibrarySectionProps) => {
       </div>
 
       <div className="flex flex-wrap gap-2 justify-center md:justify-normal">
-        <LibraryBook />
-        <LibraryBook />
-        <LibraryBook />
+        {books
+          .filter((item) => item.status === name.toLowerCase())
+          .map((item) => (
+            <LibraryBook
+              key={item.id}
+              book_name={item.volumeInfo.title}
+              book_img={item.volumeInfo.imageLinks?.thumbnail}
+            />
+          ))}
       </div>
     </div>
   );
