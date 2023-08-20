@@ -10,5 +10,13 @@ export interface Book{
         industryIdentifiers:[{type:string, identifier:string},{type:string, identifier:string}],
         pageCount:number,
         categories:string[],
+        imageLinks?:{
+            smallThumbnail:string,
+            thumbnail:string
+        }
     }
+}
+
+export interface UserBook extends Book{
+    status:string,
 }
