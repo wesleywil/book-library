@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
+import bookReducer from "./books/books";
 import utilReducer from "./utils/utils";
 
 export const store = configureStore({
     reducer:{
-        utils:utilReducer
+        utils:utilReducer,
+        books:bookReducer
     }
 })
 
