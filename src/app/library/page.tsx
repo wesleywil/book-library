@@ -10,7 +10,7 @@ import { fetchUserBooks } from "@/redux/books/books";
 
 import LibrarySection from "@/components/library_section/library_section.component";
 import UserNotAuthenticated from "@/components/user_not_authenticated/user_not_authenticated.component";
-import BookForm from "@/components/book_form/book_form.component";
+import SearchBookContainer from "@/components/search_book_container/search_book_container.component";
 
 export default function Library() {
   const [authenticated, setAuthenticated] = useState<boolean>(false);
@@ -20,7 +20,6 @@ export default function Library() {
     (state: RootState) => state.utils.hide_book_form
   );
   const status = useSelector((state: RootState) => state.books.status);
-  const books = useSelector((state: RootState) => state.books.books);
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
@@ -38,7 +37,7 @@ export default function Library() {
     return (
       <>
         <main className="min-w-screen min-h-screen p-4 flex flex-col">
-          {hideForm ? "" : <BookForm />}
+          {hideForm ? "" : <SearchBookContainer />}
 
           <div className="z-0">
             <h1 className="text-center text-5xl font-bold">
