@@ -1,9 +1,10 @@
 import { getFirestore, doc, collection, getDoc, updateDoc, arrayUnion } from "firebase/firestore/lite";
 import firebase_app from "@/config";
+import { Book, UserBook } from "@/utils/interfaces";
 
 const db = getFirestore(firebase_app);
 
-export async function createUserBook(userDocID:string, bookData:any){
+export async function createUserBook(userDocID:string, bookData:Book){
     try{
     const userRef = collection(db, "users");
     const userDocRef = doc(userRef, userDocID);
@@ -11,8 +12,12 @@ export async function createUserBook(userDocID:string, bookData:any){
     const userData = userDocSnapshot.data();
 
     const existingBooks = userData && userData.books ? userData.books : [];
+    const userBookData:UserBook = {
+        ...bookData,
+        status:"read"
+    }
     await updateDoc(userDocRef,{
-        books: arrayUnion(bookData, ...existingBooks)
+        books: arrayUnion(userBookData, ...existingBooks)
     });
     return userDocRef;
     }catch(error:any){
