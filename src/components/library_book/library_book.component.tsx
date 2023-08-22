@@ -4,7 +4,7 @@ type LibraryBookProps = {
   book_img?: string;
   book_name: string;
   btnName: string;
-  btnAction: MouseEventHandler<HTMLButtonElement>;
+  btnAction?: MouseEventHandler<HTMLButtonElement>;
 };
 
 const LibraryBook = ({

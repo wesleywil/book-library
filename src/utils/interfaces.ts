@@ -20,3 +20,7 @@ export interface Book{
 export interface UserBook extends Book{
     status:string,
 }
+
+export interface SectionMapping {
+    [key: string]: string;
+  }

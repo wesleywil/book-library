@@ -8,9 +8,9 @@ import { useAuthContext } from "@/context/authContext";
 import { handleHideBookForm } from "@/redux/utils/utils";
 import { fetchUserBooks } from "@/redux/books/books";
 
-import LibrarySection from "@/components/library_section/library_section.component";
 import UserNotAuthenticated from "@/components/user_not_authenticated/user_not_authenticated.component";
 import SearchBookContainer from "@/components/search_book_container/search_book_container.component";
+import LibraryContainerSections from "@/components/library_container_sections/library_container_sections.component";
 
 export default function Library() {
   const [authenticated, setAuthenticated] = useState<boolean>(false);
@@ -49,10 +49,7 @@ export default function Library() {
                 +
               </button>
             </h1>
-            <LibrarySection name="Favorites" />
-            <LibrarySection name="Reading" />
-            <LibrarySection name="Want to Read" />
-            <LibrarySection name="Read" />
+            <LibraryContainerSections />
           </div>
         </main>
       </>

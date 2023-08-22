@@ -11,7 +11,7 @@ const LibrarySection = ({ name }: LibrarySectionProps) => {
   const books = useSelector((state: RootState) => state.books.books);
   useEffect(() => {}, [books]);
   return (
-    <div className="w-full xl:w-2/3 xl:mx-auto mt-2 p-1  border border-yellow-400 rounded">
+    <div className="w-full xl:w-2/3 xl:mx-auto p-1  border border-yellow-400 rounded">
       <div className="px-2 mb-2 flex flex-col  md:flex-row-reverse justify-between">
         <h2 className="text-2xl font-semibold text-yellow-400">{name}</h2>
         <div className="md:w-1/3 flex flex-col md:flex-row">
@@ -34,6 +34,7 @@ const LibrarySection = ({ name }: LibrarySectionProps) => {
               key={item.id}
               book_name={item.volumeInfo.title}
               book_img={item.volumeInfo.imageLinks?.thumbnail}
+              btnName="Options"
             />
           ))}
       </div>
