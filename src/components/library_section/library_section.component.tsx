@@ -1,7 +1,9 @@
-import { useSelector } from "react-redux";
-import { RootState } from "@/redux/store";
-import LibraryBook from "../library_book/library_book.component";
 import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import type { RootState, AppDispatch } from "@/redux/store";
+import { selectUserBook } from "@/redux/books/books";
+import { handleHideBookOptions } from "@/redux/utils/utils";
+import LibraryBook from "../library_book/library_book.component";
 
 type LibrarySectionProps = {
   name: string;
@@ -9,6 +11,13 @@ type LibrarySectionProps = {
 
 const LibrarySection = ({ name }: LibrarySectionProps) => {
   const books = useSelector((state: RootState) => state.books.books);
+  const dispatch = useDispatch<AppDispatch>();
+
+  const handleSelectBook = (bookId: string) => {
+    dispatch(selectUserBook(bookId));
+    dispatch(handleHideBookOptions());
+  };
+
   useEffect(() => {}, [books]);
   return (
     <div className="w-full xl:w-2/3 xl:mx-auto p-1  border border-yellow-400 rounded">
@@ -35,6 +44,7 @@ const LibrarySection = ({ name }: LibrarySectionProps) => {
               book_name={item.volumeInfo.title}
               book_img={item.volumeInfo.imageLinks?.thumbnail}
               btnName="Options"
+              btnAction={() => handleSelectBook(item.id)}
             />
           ))}
       </div>

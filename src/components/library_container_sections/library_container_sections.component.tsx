@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { RootState } from "@/redux/store";
+import type { RootState } from "@/redux/store";
 import { SectionMapping } from "@/utils/interfaces";
 
 import LibraryMenuSection from "../library_menu_section/library_menu_section.component";
@@ -10,6 +10,9 @@ const LibraryContainerSections = () => {
   const librarySection = useSelector(
     (state: RootState) => state.library.section_status
   );
+  const hideBookoptions = useSelector(
+    (state: RootState) => state.utils.hide_book_options
+  );
   const sectionMapping: SectionMapping = {
     Favorites: "Favorites",
     Reading: "Reading",
@@ -19,7 +22,8 @@ const LibraryContainerSections = () => {
   const sectionName = sectionMapping[librarySection] || "Read";
   return (
     <>
-      <BookOptions />
+      {hideBookoptions ? "" : <BookOptions />}
+
       <LibraryMenuSection />
       <LibrarySection name={sectionName} />
     </>
