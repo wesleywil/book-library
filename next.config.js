@@ -5,6 +5,11 @@ const nextConfig = {
             {
                 protocol:"https",
                 hostname:"dummyimage.com",
+            },
+            {
+                protocol:"http",
+                hostname:"books.google.com",
+                
             }
         ]
     }
