@@ -11,6 +11,7 @@ import { fetchUserBooks } from "@/redux/books/books";
 import UserNotAuthenticated from "@/components/user_not_authenticated/user_not_authenticated.component";
 import SearchBookContainer from "@/components/search_book_container/search_book_container.component";
 import LibraryContainerSections from "@/components/library_container_sections/library_container_sections.component";
+import { BookStatusCode } from "@/utils/statusCodes";
 
 export default function Library() {
   const [authenticated, setAuthenticated] = useState<boolean>(false);
@@ -27,11 +28,16 @@ export default function Library() {
       setAuthenticated(false);
     } else {
       setAuthenticated(true);
-      if (status === "idle") {
+      if (
+        status === BookStatusCode.Idle ||
+        status === BookStatusCode.SuccessCreate ||
+        status === BookStatusCode.SuccessUpdate ||
+        status === BookStatusCode.SuccessDelete
+      ) {
         dispatch(fetchUserBooks(user.uid));
       }
     }
-  }, [user, dispatch]);
+  }, [user, status, dispatch]);
 
   if (authenticated) {
     return (

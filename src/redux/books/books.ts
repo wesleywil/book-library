@@ -1,19 +1,20 @@
 import  { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { UserBook } from "@/utils/interfaces";
-import { getUserBooks, updateUserBookStatus, deleteUserBook as bookDelete } from "@/firebase/books/bookUtilities";
+import { getUserBooks, createUserBook as bookCreate, updateUserBookStatus, deleteUserBook as bookDelete } from "@/firebase/books/bookUtilities";
+import { BookStatusCode } from "@/utils/statusCodes";
 
 
 export interface BookState{
     book:UserBook,
     books:UserBook[],
-    status:string,
+    status:BookStatusCode,
     error:string,
 }
 
 const initialState:BookState = {
     book: {} as UserBook,
     books: [],
-    status:"idle",
+    status:BookStatusCode.Idle,
     error:""
 };
 
@@ -25,6 +26,14 @@ export const fetchUserBooks = createAsyncThunk(
         return books;
     }
 );
+
+export const createUserBook = createAsyncThunk(
+    "books/createUserBook",
+    async({userId, userBookData}:{userId:string, userBookData:UserBook})=>{
+        const res = await bookCreate(userId, userBookData);
+        return res;
+    }
+)
 
 export const updateUserBook = createAsyncThunk(
     "books/updateUserBook",
@@ -57,31 +66,44 @@ export const bookSlice = createSlice({
     extraReducers:(builder)=>{
         builder
             .addCase(fetchUserBooks.pending, (state)=>{
-                state.status = "fetching";
+                state.status = BookStatusCode.InProgress;
             })
             .addCase(fetchUserBooks.fulfilled, (state, {payload})=>{
-                state.status = "success";
+                state.status = BookStatusCode.Fetched;
                 state.books = payload;
             })
             .addCase(fetchUserBooks.rejected, (state, {payload})=>{
+                state.status = BookStatusCode.Error;
+                state.error = String(payload);
+            })
+            .addCase(createUserBook.pending, (state)=>{
+                state.status = BookStatusCode.InProgress
+            })
+            .addCase(createUserBook.fulfilled, (state)=>{
+                state.status = BookStatusCode.SuccessCreate
+            })
+            .addCase(createUserBook.rejected, (state, {payload})=>{
+                state.status = BookStatusCode.Error;
                 state.error = String(payload);
             })
             .addCase(updateUserBook.pending, (state)=>{
-                state.status = "trying to update user book";
+                state.status = BookStatusCode.InProgress
             })
             .addCase(updateUserBook.fulfilled, (state)=>{
-                state.status = "success in updating the book status";
+                state.status = BookStatusCode.SuccessUpdate
             })
             .addCase(updateUserBook.rejected, (state, {payload})=>{
+                state.status = BookStatusCode.Error;
                 state.error = String(payload);
             })
             .addCase(deleteUserBook.pending, (state)=>{
-                state.status = "trying to delete the user book";
+                state.status = BookStatusCode.Idle;
             })
             .addCase(deleteUserBook.fulfilled, (state)=>{
-                state.status = "success in deleting the user book";
+                state.status = BookStatusCode.SuccessDelete
             })
             .addCase(deleteUserBook.rejected, (state, {payload})=>{
+                state.status = BookStatusCode.Error;
                 state.error = String(payload);
             })
     }
