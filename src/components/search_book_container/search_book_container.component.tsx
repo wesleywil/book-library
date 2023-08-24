@@ -4,8 +4,10 @@ import { AppDispatch } from "@/redux/store";
 
 import { Book } from "@/utils/interfaces";
 import { useAuthContext } from "@/context/authContext";
-import { createUserBook } from "@/firebase/books/bookUtilities";
-import { handleHideBookForm } from "@/redux/utils/utils";
+import {
+  handleHideBookForm,
+  handleHideAddBookOptions,
+} from "@/redux/utils/utils";
 
 import LibraryBook from "../library_book/library_book.component";
 
@@ -15,13 +17,15 @@ const SearchBookContainer = () => {
 
   const dispatch = useDispatch<AppDispatch>();
 
-  const { user } = useAuthContext();
-
   const handleSearch = async () => {
     const req = await fetch(`http://localhost:3000/api/books/${searchValue}`);
     const books: Book[] = (await req.json()) as Book[];
     // console.log("RETURN=> ", books);
     setListBooks(books);
+  };
+
+  const handleHideOptions = () => {
+    dispatch(handleHideAddBookOptions());
   };
 
   return (
@@ -40,7 +44,7 @@ const SearchBookContainer = () => {
             }
             type="text"
             placeholder="Search For A Book ex:Harry Potter"
-            className="w-10/12 px-2 py-1 text-black font-semibold rounded-l"
+            className="w-10/12 px-2 py-1 text-black font-semibold outline-0 rounded-l"
           />
           <button
             onClick={handleSearch}
@@ -57,10 +61,11 @@ const SearchBookContainer = () => {
               .map((item) => (
                 <LibraryBook
                   key={item.id}
+                  book={item}
                   book_img={item.volumeInfo.imageLinks?.thumbnail}
                   book_name={item.volumeInfo.title}
                   btnName="Add"
-                  btnAction={() => createUserBook(user.uid, item)}
+                  btnAction={handleHideOptions}
                 />
               ))
           ) : (

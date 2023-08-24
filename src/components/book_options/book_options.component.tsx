@@ -17,6 +17,11 @@ const BookOptions = () => {
   const { user } = useAuthContext();
   const defaultBackgroungImage = "https://dummyimage.com/220x250";
 
+  const closeBookOptions = () => {
+    dispatch(handleHideBookOptions());
+    dispatch(resetSelectedUserBook());
+  };
+
   const handleUpdate = async (status: string) => {
     const data = {
       userId: user.uid,
@@ -24,6 +29,7 @@ const BookOptions = () => {
       status: status,
     };
     dispatch(updateUserBook(data));
+    closeBookOptions();
   };
 
   const handleDelete = () => {
@@ -32,12 +38,9 @@ const BookOptions = () => {
       bookId: book.id,
     };
     dispatch(deleteUserBook(data));
+    closeBookOptions();
   };
 
-  const closeBookOptions = () => {
-    dispatch(handleHideBookOptions());
-    dispatch(resetSelectedUserBook());
-  };
   return (
     <div className="absolute w-11/12 h-5/6 p-2 flex flex-col items-center justify-center gap-2 bg-black z-10 border border-red-400 rounded">
       <button

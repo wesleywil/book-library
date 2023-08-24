@@ -13,6 +13,10 @@ const LibrarySection = ({ name }: LibrarySectionProps) => {
   const books = useSelector((state: RootState) => state.books.books);
   const dispatch = useDispatch<AppDispatch>();
 
+  const filteredBooks = books.filter(
+    (item) => item.status === name.toLowerCase()
+  );
+
   const handleSelectBook = (bookId: string) => {
     dispatch(selectUserBook(bookId));
     dispatch(handleHideBookOptions());
@@ -23,22 +27,11 @@ const LibrarySection = ({ name }: LibrarySectionProps) => {
     <div className="w-full xl:w-2/3 xl:mx-auto p-1  border border-yellow-400 rounded">
       <div className="px-2 mb-2 flex flex-col  md:flex-row-reverse justify-between">
         <h2 className="text-2xl font-semibold text-yellow-400">{name}</h2>
-        <div className="md:w-1/3 flex flex-col md:flex-row">
-          <input
-            type="text"
-            placeholder="search"
-            className="w-full md:w-2/3 px-2 py-1 text-xl text-black outline-none rounded"
-          />
-          <button className="w-full md:w-1/3 mt-2 md:mt-0 md:ml-2 px-2 py-1 text-xl bg-red-400 hover:bg-red-600 rounded">
-            search
-          </button>
-        </div>
       </div>
 
-      <div className="flex flex-wrap gap-2 justify-center md:justify-normal">
-        {books
-          .filter((item) => item.status === name.toLowerCase())
-          .map((item) => (
+      <div className="px-2 pb-1 flex flex-wrap gap-2 justify-center md:justify-normal">
+        {filteredBooks.length ? (
+          filteredBooks.map((item) => (
             <LibraryBook
               key={item.id}
               book_name={item.volumeInfo.title}
@@ -46,7 +39,12 @@ const LibrarySection = ({ name }: LibrarySectionProps) => {
               btnName="Options"
               btnAction={() => handleSelectBook(item.id)}
             />
-          ))}
+          ))
+        ) : (
+          <h1 className="w-full mx-auto p-4 text-4xl text-center text-slate-400">
+            NO BOOKS IN THIS SECTION
+          </h1>
+        )}
       </div>
     </div>
   );
