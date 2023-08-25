@@ -36,3 +36,6 @@ next-env.d.ts
 
 #enviropment variables
 .env
+
+#helper text
+helper.txt
