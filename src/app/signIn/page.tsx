@@ -1,8 +1,9 @@
 "use client";
 
+import { useAuthContext } from "@/context/authContext";
 import signIn from "@/firebase/auth/signIn";
 import { useRouter } from "next/navigation";
-import React, { ChangeEvent, useState, useEffect } from "react";
+import React, { ChangeEvent, useState } from "react";
 
 export default function SignIn() {
   const [email, setEmail] = useState<string>("");
@@ -20,13 +21,9 @@ export default function SignIn() {
     return router.push("/");
   };
 
-  let logged_in = false;
+  const { user } = useAuthContext();
 
-  useEffect(() => {
-    logged_in = JSON.parse(localStorage.getItem("userLogged")!).logIn;
-  }, []);
-
-  if (!logged_in) {
+  if (user) {
     router.push("/");
   }
   return (
