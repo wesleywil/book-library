@@ -1,3 +1,5 @@
+
+
 export interface Book{
     id:string,
     etag:string,
@@ -17,8 +19,17 @@ export interface Book{
     }
 }
 
+
+
 export interface UserBook extends Book{
     status:string,
+}
+
+export interface User{
+    books:UserBook[],
+    displayName:string,
+    email:string,
+    uid:string,
 }
 
 export interface SectionMapping {
