@@ -32,7 +32,7 @@ export const AuthContextProvider = ({
 
   return (
     <AuthContext.Provider value={{ user }}>
-      {!loading ? (
+      {loading ? (
         <main className="min-w-screen min-h-screen flex flex-col items-center justify-center p-4 text-[#f3392c]">
           <div className="text-6xl font-bold spin">
             <FaRedo />
