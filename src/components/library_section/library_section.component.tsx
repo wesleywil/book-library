@@ -24,9 +24,9 @@ const LibrarySection = ({ name }: LibrarySectionProps) => {
 
   useEffect(() => {}, [books]);
   return (
-    <div className="w-full xl:w-2/3 xl:mx-auto p-1  border border-yellow-400 rounded">
+    <div className="w-full xl:w-2/3 xl:mx-auto p-1  border border-[#fffff3] rounded">
       <div className="px-2 mb-2 flex flex-col  md:flex-row-reverse justify-between">
-        <h2 className="text-2xl font-semibold text-yellow-400">{name}</h2>
+        <h2 className="text-2xl font-semibold text-[#fffff3]">{name}</h2>
       </div>
 
       <div className="px-2 pb-1 flex flex-wrap gap-2 justify-center md:justify-normal">

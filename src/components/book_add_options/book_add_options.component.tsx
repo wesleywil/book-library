@@ -27,28 +27,28 @@ const BookAddOptions = ({ book }: { book: Book }) => {
     dispatch(handleHideBookForm());
   };
   return (
-    <div className="grow w-11/12 m-2 p-2 text-xs flex flex-col items-center justify-center gap-2 bg-red-400/40 border border-red-400 rounded">
+    <div className="grow w-11/12 m-2 p-2 text-xs flex flex-col items-center justify-center gap-2 bg-[#222126]/50 border border-[#f3392c] rounded">
       <button
         onClick={() => handleCreateBook("favorite")}
-        className="w-full py-1 bg-purple-400 hover:bg-purple-600 rounded"
+        className="w-full py-1 bg-[#f3392c] hover:bg-red-700 rounded transform duration-500 ease-in-out"
       >
         Favorite
       </button>
       <button
         onClick={() => handleCreateBook("reading")}
-        className="w-full py-1 bg-green-400 hover:bg-green-600 rounded"
+        className="w-full py-1 bg-[#f3392c] hover:bg-red-700 rounded transform duration-500 ease-in-out "
       >
         Reading
       </button>
       <button
         onClick={() => handleCreateBook("want to read")}
-        className="w-full py-1 bg-yellow-400 hover:bg-yellow-600 rounded"
+        className="w-full py-1 bg-[#f3392c] hover:bg-red-700 rounded transform duration-500 ease-in-out"
       >
         Want to Read
       </button>
       <button
         onClick={() => handleCreateBook("read")}
-        className="w-full py-1 bg-red-400 hover:bg-red-600 rounded"
+        className="w-full py-1 bg-[#f3392c] hover:bg-red-700 rounded transform duration-500 ease-in-out"
       >
         Read
       </button>

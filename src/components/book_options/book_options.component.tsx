@@ -42,15 +42,15 @@ const BookOptions = () => {
   };
 
   return (
-    <div className="absolute w-11/12 h-5/6 p-2 flex flex-col items-center justify-center gap-2 bg-black z-10 border border-red-400 rounded">
+    <div className="absolute w-11/12 h-5/6 p-2 flex flex-col items-center justify-center gap-2 bg-[#222126]/90 z-10 border border-[#f3392c] rounded">
       <button
         onClick={closeBookOptions}
-        className="p-2 text-2xl bg-red-400 hover:bg-red-600 rounded-full"
+        className="p-2 text-2xl bg-[#f3392c] hover:bg-[#f3392c]/70 rounded-full transform duration-700 ease-in-out"
       >
         <FaTimes />
       </button>
       <h1 className="mb-2 text-3xl font-semibold ">Menu Book</h1>
-      <div className="p-8 flex gap-4 justify-center border border-yellow-400 rounded">
+      <div className="p-8 flex gap-4 justify-center bg-[#222126] border border-[#f3392c] rounded">
         <div className="flex flex-col gap-2 justify-center items-center">
           {book.volumeInfo.title.length > 30 ? (
             <h2 className="text-xs">{book.volumeInfo.title}</h2>
@@ -65,39 +65,39 @@ const BookOptions = () => {
             width={220}
             height={250}
             alt="books cover"
-            className="rounded"
+            className="border border-[#fffff3] rounded"
           />
         </div>
-        <div className="flex flex-col gap-2 justify-center items-center">
+        <div className="flex flex-col justify-center items-center">
           <h2 className="text-xl">Options</h2>
-          <div className="w-[220px] h-[250px] flex flex-col gap-2 items-center justify-center">
+          <div className="w-[220px] h-[250px] flex flex-col gap-2 items-center justify-center text-[#fffff3]">
             <button
               onClick={() => handleUpdate("favorites")}
-              className="w-full px-1 font-semibold text-black hover:text-white  bg-purple-400 hover:bg-purple-600 rounded"
+              className="w-full px-1 font-semibold text-[#222126] bg-[#fffff3] hover:bg-[#fffff3]/70 rounded transform duration-500 ease-in-out"
             >
               Favorite
             </button>
             <button
               onClick={() => handleUpdate("reading")}
-              className="w-full px-1 font-semibold text-black hover:text-white bg-green-400 hover:bg-green-600 rounded"
+              className="w-full px-1 font-semibold text-[#222126] bg-[#fffff3] hover:bg-[#fffff3]/70 rounded transform duration-500 ease-in-out"
             >
               Reading
             </button>
             <button
               onClick={() => handleUpdate("want to read")}
-              className="w-full px-1 font-semibold text-black hover:text-white bg-yellow-400 hover:bg-yellow-600 rounded"
+              className="w-full px-1 font-semibold text-[#222126] bg-[#fffff3] hover:bg-[#fffff3]/70 rounded transform duration-500 ease-in-out"
             >
               Want To Read
             </button>
             <button
               onClick={() => handleUpdate("read")}
-              className="w-full px-1 font-semibold text-black hover:text-white bg-red-400 hover:bg-red-600 rounded"
+              className="w-full px-1 font-semibold text-[#222126] bg-[#fffff3] hover:bg-[#fffff3]/70 rounded transform duration-500 ease-in-out"
             >
               Read
             </button>
             <button
               onClick={handleDelete}
-              className="p-2 text-2xl bg-white hover:bg-slate-200 text-black rounded-full"
+              className="p-2 text-2xl bg-[#f3392c] hover:bg-[#f3392c]/70 rounded-full"
             >
               <FaTrashAlt />{" "}
             </button>

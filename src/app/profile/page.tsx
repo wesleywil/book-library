@@ -42,22 +42,30 @@ export default function Profile() {
 
   if (user) {
     return (
-      <main className="min-w-screen min-h-screen p-4">
-        <h1 className="text-center text-5xl font-bold">Profile</h1>
-        <div className="mt-8 w-full flex flex-col items-center">
-          <div className="flex flex-col items-center">
-            <h1 className="text-3xl font-bold">{selectedUser?.displayName}</h1>
-            <h1 className="text-slate-400 text-xl">{selectedUser?.email}</h1>
-          </div>
-          <h1 className="mt-8 text-3xl font-semibold underline">Books Count</h1>
-          <div className="mt-2 flex flex-col gap-4">
-            {Object.keys(booksCountByStatus).map((status) => (
-              <ProfileInfoItem
-                key={status}
-                status={status}
-                count={booksCountByStatus[status]}
-              />
-            ))}
+      <main className="min-w-screen min-h-screen p-4 flex flex-col items-center justify-center">
+        <div className="text-[#fffff3]">
+          <h1 className="pb-4 text-center text-5xl font-bold border-b-2">
+            Profile
+          </h1>
+          <div className="mt-2 w-full flex flex-col items-center">
+            <div className="flex flex-col items-center">
+              <h1 className="text-3xl font-semibold">
+                {selectedUser?.displayName}
+              </h1>
+              <h1 className="text-[#fffff3]/70">{selectedUser?.email}</h1>
+            </div>
+            <h1 className="w-full mx-auto  mt-4 pb-4 text-center text-3xl font-semibold border-b-2 ">
+              Books Count
+            </h1>
+            <div className="mt-2 flex flex-col gap-4">
+              {Object.keys(booksCountByStatus).map((status) => (
+                <ProfileInfoItem
+                  key={status}
+                  status={status}
+                  count={booksCountByStatus[status]}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </main>

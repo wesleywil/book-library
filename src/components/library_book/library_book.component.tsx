@@ -32,9 +32,9 @@ const LibraryBook = ({
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
       }}
-      className="h-[250px] w-[220px] flex flex-col items-center justify-between border border-red-400 rounded overflow-hidden"
+      className="h-[270px] w-[220px] flex flex-col items-center justify-between text-[#222126] border border-[#fffff3] rounded overflow-hidden"
     >
-      <h2 className="w-full text-center font-semibold bg-red-400">
+      <h2 className="w-full text-center font-semibold bg-[#fffff3] border-b border-[#fffff3]">
         {book_name.length >= 30
           ? book_name.slice(0, 29) + "..."
           : book_name || "Book Has No Name"}
@@ -51,7 +51,7 @@ const LibraryBook = ({
 
       <button
         onClick={btnAction}
-        className="w-full font-semibold bg-red-400 hover:bg-red-600"
+        className="w-full font-semibold hover:text-[#fffff3] bg-[#fffff3] hover:bg-red-700 border-t border-[#fffff3] transform duration-500 ease-in-out"
       >
         {btnName}
       </button>

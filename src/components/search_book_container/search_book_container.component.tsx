@@ -1,9 +1,9 @@
 import { useState, ChangeEvent } from "react";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/redux/store";
+import { FaSearch, FaTimes } from "react-icons/fa";
 
 import { Book } from "@/utils/interfaces";
-import { useAuthContext } from "@/context/authContext";
 import {
   handleHideBookForm,
   handleHideAddBookOptions,
@@ -29,32 +29,32 @@ const SearchBookContainer = () => {
   };
 
   return (
-    <div className="absolute min-w-screen min-h-screen w-full h-full p-2 flex flex-col items-center justify-center gap-2 bg-black z-10">
+    <div className="absolute w-11/12 h-5/6 top-18 p-2 flex flex-col items-center justify-center gap-2 bg-[#222126]/90 z-10">
       <button
         onClick={() => dispatch(handleHideBookForm())}
-        className="px-2 text-4xl font-bold bg-red-500 hover:bg-red-700 text-white rounded-full"
+        className="p-2 text-4xl font-bold bg-[#f3392c] hover:bg-[#f3392c]/60 text-[#fffff3] rounded-full transform duration-700 ease-in-out"
       >
-        X
+        <FaTimes />
       </button>
-      <div className="w-full h-5/6 p-4 flex flex-col items-center border border-white rounded">
-        <div className="w-11/12 mx-auto mt-2 p-2 flex">
+      <div className="w-full h-5/6 p-4 flex flex-col items-center border border-[#fffff3] rounded">
+        <div className="w-11/12 mx-auto mt-2 p-2 flex text-xl">
           <input
             onChange={(e: ChangeEvent<HTMLInputElement>) =>
               setSearchValue(e.target.value)
             }
             type="text"
             placeholder="Search For A Book ex:Harry Potter"
-            className="w-10/12 px-2 py-1 text-black font-semibold outline-0 rounded-l"
+            className="w-10/12 px-2 py-1 bg-[#fffff3] text-[#222126] font-semibold outline-0 rounded-l"
           />
           <button
             onClick={handleSearch}
-            className="grow px-2 py-1 bg-red-400 hover:bg-red-600 text-white font-semibold rounded-r"
+            className="px-4 py-1 bg-[#f3392c] hover:bg-[#f3392c]/60 text-[#fffff3] font-semibold rounded-r"
           >
-            Search
+            <FaSearch />
           </button>
         </div>
-        <h1 className="text-3xl font-semibold">Books</h1>
-        <div className="w-full h-full flex flex-wrap justify-center gap-2 border border-red-400 overflow-y-auto rounded">
+        <h1 className="mb-4 text-4xl font-semibold">Books</h1>
+        <div className="w-full h-full p-2 flex flex-wrap justify-center gap-2 border border-[#f3392c] overflow-y-auto rounded">
           {listBooks.length ? (
             listBooks
               .splice(0, 10)
