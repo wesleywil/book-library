@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { FaPlus } from "react-icons/fa";
 
 import { AppDispatch, RootState } from "@/redux/store";
 import { useAuthContext } from "@/context/authContext";
@@ -14,7 +15,6 @@ import LibraryContainerSections from "@/components/library_container_sections/li
 import { BookStatusCode } from "@/utils/statusCodes";
 
 export default function Library() {
-  const [authenticated, setAuthenticated] = useState<boolean>(false);
   const { user } = useAuthContext();
 
   const hideForm = useSelector(
@@ -24,10 +24,7 @@ export default function Library() {
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
-    if (user === null) {
-      setAuthenticated(false);
-    } else {
-      setAuthenticated(true);
+    if (user) {
       if (
         status === BookStatusCode.Idle ||
         status === BookStatusCode.SuccessCreate ||
@@ -39,10 +36,10 @@ export default function Library() {
     }
   }, [user, status, dispatch]);
 
-  if (authenticated) {
+  if (user) {
     return (
       <>
-        <main className="min-w-screen min-h-screen p-4 flex flex-col">
+        <main className="min-w-screen min-h-screen p-4 flex flex-col text-[#fffff3]">
           {hideForm ? "" : <SearchBookContainer />}
 
           <div className="z-0">
@@ -50,9 +47,9 @@ export default function Library() {
               Library{" "}
               <button
                 onClick={() => dispatch(handleHideBookForm())}
-                className="bg-red-400 hover:bg-red-600 px-3 pb-1 rounded-full"
+                className="p-2 text-3xl bg-[#f3392c] hover:bg-[#f3392c]/60 rounded-full transform duration-700 ease-in-out"
               >
-                +
+                <FaPlus />
               </button>
             </h1>
             <LibraryContainerSections />
