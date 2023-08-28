@@ -27,7 +27,7 @@ const BookAddOptions = ({ book }: { book: Book }) => {
     dispatch(handleHideBookForm());
   };
   return (
-    <div className="grow w-11/12 m-2 p-2 text-xs flex flex-col items-center justify-center gap-2 bg-[#222126]/50 border border-[#f3392c] rounded">
+    <div className="grow w-11/12 m-2 p-2 text-xs flex flex-col items-center justify-center gap-2 text-[#fffff3] bg-[#222126]/50 border border-[#f3392c] rounded">
       <button
         onClick={() => handleCreateBook("favorite")}
         className="w-full py-1 bg-[#f3392c] hover:bg-red-700 rounded transform duration-500 ease-in-out"

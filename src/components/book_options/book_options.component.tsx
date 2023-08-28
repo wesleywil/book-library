@@ -57,16 +57,16 @@ const BookOptions = () => {
           ) : (
             <h2 className="text-xl">{book.volumeInfo.title}</h2>
           )}
-
-          <Image
-            src={
-              book.volumeInfo.imageLinks?.thumbnail || defaultBackgroungImage
-            }
-            width={220}
-            height={250}
-            alt="books cover"
-            className="border border-[#fffff3] rounded"
-          />
+          <div style={{ width: "220px", height: "250px" }} className="relative">
+            <Image
+              src={
+                book.volumeInfo.imageLinks?.thumbnail || defaultBackgroungImage
+              }
+              layout="fill"
+              alt="books cover"
+              className="border border-[#fffff3] rounded"
+            />
+          </div>
         </div>
         <div className="flex flex-col justify-center items-center">
           <h2 className="text-xl">Options</h2>
