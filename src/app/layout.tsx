@@ -2,12 +2,12 @@
 
 import "./globals.css";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Kanit } from "next/font/google";
 import { Providers } from "./provider";
 import { AuthContextProvider } from "@/context/authContext";
 import Menu from "@/components/menu/menu.component";
 
-const inter = Inter({ subsets: ["latin"] });
+const kanit = Kanit({ subsets: ["latin"], weight: "400" });
 
 export const metadata: Metadata = {
   title: "Book Librabry",
@@ -22,7 +22,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="overflow-hidden">
+      <body className={`${kanit.className} overflow-hidden`}>
         <AuthContextProvider>
           <Menu />
           <Providers>{children}</Providers>
