@@ -14,6 +14,7 @@ export default async function signUp(data:{username:string,email:string, passwor
             displayName:data.username,
             email:result.user.email,
             uid:result.user.uid,
+            books:[],
         });
         return result;
 
