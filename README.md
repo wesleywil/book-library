@@ -10,6 +10,28 @@ Your Personal Literary Haven: Organize, Explore, and Cherish Your Bookshelf with
 
 **FrontEnd:** NextJS, Redux-Toolkit, Tailwindcss
 
+## Screenshots
+
+### Demo
+
+![DEMO](https://i.imgur.com/Bai3zME.gif)
+
+### Homepage
+
+![Homepage](https://i.imgur.com/YLM3ui2.png)
+
+### Profile
+
+![Profile](https://i.imgur.com/tP9p4Su.png)
+
+### Library
+
+![Library](https://i.imgur.com/OEENohx.png)
+
+### Add Book
+
+![Add Book](https://i.imgur.com/VUM5j6I.png)
+
 ## Run Locally
 
 ### Clone the project
